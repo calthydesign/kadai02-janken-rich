@@ -1,0 +1,333 @@
+* {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+  margin: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  background-color: #fff;
+}
+header {
+  margin: 0 auto;
+  color: #252525;
+  font-size: 24px;
+  padding: 40px 0;
+  border-radius: 128px 128px 0 0;
+}
+header img {
+  width: 600px;
+}
+.btn {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #fff;
+  cursor: pointer;
+}
+#rule_btn,
+#battle_btn {
+  display: flex;
+  box-sizing: border-box;
+  width: 40%;
+  height: 60px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  background-color: #322bef;
+  border: double 8px #fff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.5rem;
+}
+#battle_btn {
+  box-sizing: border-box;
+  background-color: #fe2626;
+}
+
+main {
+  /* max-width: 768px; */
+  margin: 0 auto;
+  background-color: #fff;
+}
+h1 {
+  margin: 0;
+}
+#rule img {
+  width: 400px;
+}
+#start {
+  /* width: 50%; */
+  margin: 40px auto 80px;
+  padding: 20px;
+}
+.human img {
+  width: auto;
+  height: 150px;
+}
+.human {
+  display: flex;
+  justify-content: space-around;
+}
+.count {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+p {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+.choice img {
+  width: 100px;
+  height: auto;
+}
+.choice_message {
+  color: #252525;
+}
+/* ↓ スライドの外枠 */
+.slide-wrapper {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden; /* はみ出したスライドを隠す */
+}
+/* ↓ 左右のボタン */
+.next {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 10px;
+  bottom: 50%;
+  z-index: 10;
+  cursor: pointer;
+  border-top: solid 3px #333;
+  border-right: solid 3px #333;
+  -webkit-transform: rotate(45deg) translateY(50%);
+  transform: rotate(45deg) translateY(50%);
+}
+.prev {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 25px;
+  bottom: 50%;
+  z-index: 10;
+  cursor: pointer;
+  border-top: solid 3px #333;
+  border-right: solid 3px #333;
+  -webkit-transform: rotate(-135deg) translateY(-50%);
+  transform: rotate(-135deg) translateY(-50%);
+}
+/* ↓ インジケーター */
+.indicator {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  column-gap: 18px;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+}
+.indicator li {
+  display: none;
+  border-radius: 50%;
+  list-style: none;
+  background-color: #fff;
+  border: 2px #000 solid;
+  cursor: pointer;
+}
+.indicator li:first-of-type {
+  background-color: #000;
+}
+.slide {
+  /*スライド全体 */
+  width: 300%;
+  height: 100%;
+  display: flex;
+  transition: all 0.3s;
+}
+.slide div {
+  /* スライドの中身 */
+  width: 33.33%;
+  height: 100%;
+  font-size: 16px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.slider1 {
+  transform: translateX(0);
+  transition: all 0.3s;
+}
+.slider2 {
+  transform: translateX(-100vw);
+  transition: all 0.3s;
+}
+.slider3 {
+  transform: translateX(-200vw);
+  transition: all 0.3s;
+}
+.slide1 {
+  /* スライドさせるために必要なクラス */
+  transform: translateX(0);
+}
+.slide2 {
+  /* スライドさせるために必要なクラス */
+  transform: translateX(-33.33%);
+}
+.slide3 {
+  /* スライドさせるために必要なクラス */
+  transform: translateX(-66.66%);
+}
+.slide div:nth-of-type(1) {
+  /* 背景色 */
+  background-color: #e3f1e4;
+}
+.slide div:nth-of-type(2) {
+  /* 背景色 */
+  background-color: #fce8f0;
+}
+.slide div:nth-of-type(3) {
+  /* 背景色 */
+  background-color: #e1f3fc;
+}
+
+.choice_message {
+  margin: 30px 0 10px 0;
+}
+ul {
+  padding: 0;
+  display: table; /* 定義 */
+  table-layout: fixed;
+  width: 100%;
+}
+li {
+  list-style-type: none;
+  background-color: #fff;
+  display: table-cell; /* 定義 */
+  cursor: pointer;
+}
+li:hover {
+  border: solid 2px #00c458;
+  border-radius: 4px;
+  color: #333;
+  transition: 0.1s;
+  box-sizing: border-box;
+}
+li img {
+  width: 100px;
+  height: 100px;
+}
+#ball {
+  display: block;
+  background-color: #fff;
+  width: 200px;
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.ball_btn {
+  background-color: #ffdc2c;
+  border-radius: 16px;
+}
+.ball_img {
+  width: 60px;
+  height: auto;
+}
+.battle_wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 60px;
+  /* align-content: flex-start; */
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.choice {
+  margin-top: 30px;
+  width: 30%;
+}
+.rival-wrapper img {
+  width: auto;
+  height: 100px;
+}
+#gu_btn,
+#cho_btn,
+#par_btn {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+#gu_btn img,
+#cho_btn img,
+#par_btn img {
+  display: block;
+  margin-bottom: 20px;
+}
+.rival {
+  margin-top: 30px;
+  width: 30%;
+}
+
+#judgment {
+  font-size: 40px;
+  margin: 80px 0 10px 0;
+  color: #fe2626;
+}
+#judgment img {
+  width: 100%;
+}
+/* .result_massage {
+    margin-top: 40px;
+  } */
+/* .result {
+  width: 70%;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #252525;
+  border: double 8px #cecece;
+  border-radius: 8px;
+  color: #fff;
+} */
+#pc_hands {
+  display: flex;
+  margin: 20px auto 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+footer {
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 0 0 128px 128px;
+}
+.reroad {
+  display: block;
+  font-size: 18px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 128px;
+  color: #252525;
+  margin-top: 40px;
+}
+small {
+  color: #fff;
+}

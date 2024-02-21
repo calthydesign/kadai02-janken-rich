@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <title>あとだしポケモンバトルしよう！</title>
+  </head>
+
+  <body>
+    <header>
+      <h1><img src="./img/top.png" alt="あとだしポケモンバトルしよう！" /></h1>
+      <div class="btn">
+        <p id="rule_btn">ルールはこちら</p>
+        <p id="battle_btn">バトルする！</p>
+      </div>
+    </header>
+
+    <main>
+      <p id="rule"><img src="./img/rule.png" alt="ルール" /></p>
+      <p>ボールをおしたら、あいてがポケモンをだすよ！</p>
+      <p>どのポケモンをだしたらかてるかな？えらんでみてね！</p>
+      <p>「バトルする！」ボタンをおしてすすもう！</p>
+      <div id="start">
+        <div>
+          <div class="battle">
+            <div class="battle_wrapper">
+              <div class="choice">
+                <p>あなた</p>
+                <img src="./img/you.png" width="60" alt="" />
+                <div class="count">
+                  あなたがかったかいすう:<span id="win">0</span
+                  ><span>かい</span>
+                </div>
+
+                <!-- ↓ スライドの外枠 -->
+                <div class="slide-wrapper">
+                  <!--スライド-->
+                  <div id="slide" class="slide">
+                    <div>
+                      <p id="gu_btn">
+                        <img src="./img/fushigidane_r.gif" alt="フシギダネ" />
+                        <span>フシギダネ</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p id="cho_btn">
+                        <img src="./img/hitokage_r.gif" alt="フシギダネ" />
+                        <span>ヒトカゲ</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p id="par_btn">
+                        <img src="./img/zenigame_r.gif" alt="フシギダネ" />
+                        <span>ゼニガメ</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- ↓ 左右のボタン -->
+                  <span id="prev" class="prev"></span>
+                  <span id="next" class="next"></span>
+                  <!-- ↓ インジケーター -->
+                  <ul class="indicator" id="indicator">
+                    <li class="list"></li>
+                    <li class="list"></li>
+                    <li class="list"></li>
+                  </ul>
+                </div>
+                <p class="choice_message">なにをだしたらかてるかな？</p>
+              </div>
+              <button id="ball">
+                <div class="ball_btn">
+                <img src="./img/ball.gif" alt="" class="ball_img"/>
+                <p>スタート！</p>
+              </div>
+                  <a onclick="window.location.reload(true);">
+                    <span class="reroad">はじめからあそぶ</span>
+                  </a>
+                  <div class="result">
+                    <p class="result_massage"></p>
+                    <div id="judgment">
+                      
+                    </div>
+              </button>
+              <div class="rival">
+                <div class="rival-wrapper">
+                  <p>あいて</p>
+                  <img src="./img/rival.png" alt="" />
+                  <div class="count">
+                    あいてがかったかいすう:<span id="lose">0</span
+                    ><span>かい</span>
+                  </div>
+                </div>
+
+                <span id="pc_hands">???</span>
+                <p>あいてはなにをだすかな？</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      </div>
+
+      <!-- </div> -->
+    </main>
+
+    <footer>
+      
+    <small
+      >このサイトはプログラミング学習のために個人で制作したもので、版権元とは一切関係ありません。</small
+    >
+  </footer>
+    <script>
+      //idが”rule”の要素までスクロールする
+      $("#rule_btn").on("click", function () {
+        const targetElement = document.querySelector("#rule");
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      });
+      //idが”start”の要素までスクロールする
+      $("#battle_btn").on("click", function () {
+        const targetElement = document.querySelector("#start");
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        const music = new Audio("./audio/audio.wav");
+        music.play();
+        music.volume = 0.05;
+        music.loop = true;
+      });
+
+      //ここに画像の定義するとscriptタグ内全体に反映できる
+      const fushigidane =
+        '<img src="./img/fushigidane.gif" width="100"><br>フシギダネ'; //グローバル変数
+      const hitokage = '<img src="./img/hitokage.gif" width="100"><br>ヒトカゲ'; //グローバル変数
+      const zenigame = '<img src="./img/zenigame.gif" width="100"><br>ゼニガメ'; //グローバル変数
+
+      //スライダーのためのjs
+      const slide = document.querySelector("#slide");
+      const prev = document.querySelector("#prev");
+      const next = document.querySelector("#next");
+      const lists = document.querySelectorAll(".list");
+      const totalSlides = lists.length;
+      let count = 0;
+
+      // ↓スライダー用の関数を定義
+      function nextClick() {
+        slide.classList.remove(`slide${(count % totalSlides) + 1}`);
+        count++;
+        slide.classList.add(`slide${(count % totalSlides) + 1}`);
+      }
+      function prevClick() {
+        slide.classList.remove(`slide${(count % totalSlides) + 1}`);
+        count--;
+        if (count < 0) count = totalSlides - 1;
+        slide.classList.add(`slide${(count % totalSlides) + 1}`);
+      }
+
+      // ↓クリックイベントのリスナーを登録
+
+      next.addEventListener("click", function () {
+        //アロー関数()=> はfunction()と同じ意味。
+        nextClick();
+      });
+      prev.addEventListener("click", function () {
+        prevClick();
+      });
+
+      //ボールボタンを押したら相手の手が決まる（乱数）1
+      //1:フシギダネ、2:ヒトカゲ、３：ゼニガメ
+      $("#ball").on("click", function () {
+        const comHand = Math.ceil(Math.random() * 3);
+        let view = "";
+        if (comHand === 1) {
+          view = fushigidane;
+        } else if (comHand === 2) {
+          view = hitokage;
+        } else if (comHand === 3) {
+          view = zenigame;
+        }
+        //相手の手が表示される
+        $("#pc_hands").html(view);
+        //グーボタンを押すと勝ち負けが決まる
+        $("#gu_btn").on("click", function () {
+          let judgment = "";
+          if (comHand === 1) {
+            judgment = "あいこ";
+          } else if (comHand === 2) {
+            judgment = "まけ";
+          } else if (comHand === 3) {
+            judgment = "かち！";
+          }
+          //勝ち負け表示
+          $("#judgment").html(judgment).show(1500);
+        });
+        //チョキボタンを押すと勝ち負けが決まる
+        $("#cho_btn").on("click", function () {
+          let judgment = "";
+          if (comHand === 1) {
+            judgment = "かち！";
+          } else if (comHand === 2) {
+            judgment = "あいこ";
+          } else if (comHand === 3) {
+            judgment = "まけ";
+          }
+          //勝ち負け表示
+          $("#judgment").html(judgment).fadeIn(1000);
+        });
+        //パーボタンを押すと勝ち負けが決まる
+        $("#par_btn").on("click", function () {
+          let judgment = "";
+          if (comHand === 1) {
+            judgment = "まけ";
+          } else if (comHand === 2) {
+            judgment = "かち！";
+          } else if (comHand === 3) {
+            judgment = "あいこ";
+          }
+          //勝ち負け表示
+          $("#judgment").html(judgment).fadeIn(1000);
+        });
+      });
+
+      
+
+      function updatewinCount() {
+        let winCount = $("#win").text();
+        winCount = parseInt(winCount) + 1;
+        $("#win").text(winCount);
+      }
+      function updateloseCount() {
+        let loseCount = $("#lose").text();
+        loseCount = parseInt(loseCount) + 1;
+        $("#lose").text(loseCount);
+      }
+
+      $("#gu_btn").on("click", function () {
+        if ($("#pc_hands").html() == zenigame) {
+          updatewinCount();
+        } else if ($("#pc_hands").html() == hitokage) {
+          updateloseCount();
+        }
+      });
+      $("#cho_btn").on("click", function () {
+        if ($("#pc_hands").html() == fushigidane) {
+          updatewinCount();
+        } else if ($("#pc_hands").html() == zenigame) {
+          updateloseCount();
+        }
+      });
+      $("#par_btn").on("click", function () {
+        if ($("#pc_hands").html() == hitokage) {
+          updatewinCount();
+        } else if ($("#pc_hands").html() == fushigidane) {
+          updateloseCount();
+        }
+      });
+    </script>
+  </body>
+</html>
