@@ -3,7 +3,7 @@
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0.05em;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 body {
@@ -20,9 +20,11 @@ header {
   font-size: 24px;
   padding: 40px 0;
   border-radius: 128px 128px 0 0;
+  height: 100vh;
+  margin-bottom: 100px;
 }
 header img {
-  width: 600px;
+  width: 40%;
 }
 .btn {
   display: flex;
@@ -49,6 +51,9 @@ header img {
   color: #fff;
   font-size: 1.5rem;
 }
+.bold {
+  font-weight: 700;
+}
 #battle_btn {
   box-sizing: border-box;
   background-color: #fe2626;
@@ -62,8 +67,12 @@ main {
 h1 {
   margin: 0;
 }
+#rule {
+  height: 100vh;
+  margin-bottom: 100px;
+}
 #rule img {
-  width: 400px;
+  width: 30%;
 }
 #start {
   /* width: 50%; */
@@ -242,6 +251,11 @@ li img {
   background-color: #ffdc2c;
   border-radius: 16px;
 }
+.ball_btn:hover {
+  background-color: #fad000;
+  scale: 1.05;
+  transition: 0.3s;
+}
 .ball_img {
   width: 60px;
   height: auto;
@@ -250,7 +264,7 @@ li img {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
-  margin-top: 60px;
+  margin-top: 20px;
   /* align-content: flex-start; */
   flex-wrap: nowrap;
   flex-direction: row;
