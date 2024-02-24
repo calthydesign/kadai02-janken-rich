@@ -28,14 +28,20 @@
     </header>
 
     <main>
-      <p id="rule"><img src="./img/rule.png" alt="ルール" /></p>
+      <div id="rule">
+      <p><img src="./img/rule.png" alt="ルール" /></p>
       <p>ボールをおしたら、あいてがポケモンをだすよ！</p>
-      <p>どのポケモンをだしたらかてるかな？えらんでみてね！</p>
+      <p class="bold">どのポケモンをだしたらかてるかな？えらんでみてね！</p>
       <p>「バトルする！」ボタンをおしてすすもう！</p>
+      </div>
       <div id="start">
         <div>
           <div class="battle">
             <div class="battle_wrapper">
+              <audio id="sound" preload="auto">
+                <source src="./audio/win.mp3" type="audio/mp3">
+                <source src="./audio/lose.mp3" type="audio/mp3">                
+            </audio>
               <div class="choice">
                 <p>あなた</p>
                 <img src="./img/you.png" width="60" alt="" />
@@ -145,7 +151,11 @@
         '<img src="./img/fushigidane.gif" width="100"><br>フシギダネ'; //グローバル変数
       const hitokage = '<img src="./img/hitokage.gif" width="100"><br>ヒトカゲ'; //グローバル変数
       const zenigame = '<img src="./img/zenigame.gif" width="100"><br>ゼニガメ'; //グローバル変数
-
+      const draw = '<img src="./img/draw.gif">';
+      const win = '<img src="./img/win.gif">';
+      const lose = '<img src="./img/lose.gif">';
+      
+    
       //スライダーのためのjs
       const slide = document.querySelector("#slide");
       const prev = document.querySelector("#prev");
@@ -177,6 +187,7 @@
         prevClick();
       });
 
+
       //ボールボタンを押したら相手の手が決まる（乱数）1
       //1:フシギダネ、2:ヒトカゲ、３：ゼニガメ
       $("#ball").on("click", function () {
@@ -195,40 +206,40 @@
         $("#gu_btn").on("click", function () {
           let judgment = "";
           if (comHand === 1) {
-            judgment = "あいこ";
+            judgment = draw;
           } else if (comHand === 2) {
-            judgment = "まけ";
+            judgment = lose;
           } else if (comHand === 3) {
-            judgment = "かち！";
+            judgment = win;
           }
           //勝ち負け表示
-          $("#judgment").html(judgment).show(1500);
+          $("#judgment").html(judgment);
         });
         //チョキボタンを押すと勝ち負けが決まる
         $("#cho_btn").on("click", function () {
           let judgment = "";
           if (comHand === 1) {
-            judgment = "かち！";
+            judgment = win;
           } else if (comHand === 2) {
-            judgment = "あいこ";
+            judgment = draw;
           } else if (comHand === 3) {
-            judgment = "まけ";
+            judgment = lose;
           }
           //勝ち負け表示
-          $("#judgment").html(judgment).fadeIn(1000);
+          $("#judgment").html(judgment).slideDown(1000);
         });
         //パーボタンを押すと勝ち負けが決まる
         $("#par_btn").on("click", function () {
           let judgment = "";
           if (comHand === 1) {
-            judgment = "まけ";
+            judgment = lose;
           } else if (comHand === 2) {
-            judgment = "かち！";
+            judgment = win;
           } else if (comHand === 3) {
-            judgment = "あいこ";
+            judgment = draw;
           }
           //勝ち負け表示
-          $("#judgment").html(judgment).fadeIn(1000);
+          $("#judgment").html(judgment).slideDown(1000);
         });
       });
 
