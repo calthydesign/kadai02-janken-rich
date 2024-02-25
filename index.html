@@ -154,6 +154,13 @@
       const draw = '<img src="./img/draw.gif">';
       const win = '<img src="./img/win.gif">';
       const lose = '<img src="./img/lose.gif">';
+      //音の設定
+      const win_music = new Audio("./audio/win.mp3");
+      win_music.volume = 0.5;
+      win_music.loop = false;
+      const lose_music = new Audio("./audio/lose.mp3");
+      lose_music.volume = 0.5;
+      lose_music.loop = false;
       
     
       //スライダーのためのjs
@@ -209,8 +216,10 @@
             judgment = draw;
           } else if (comHand === 2) {
             judgment = lose;
+            lose_music.play();
           } else if (comHand === 3) {
             judgment = win;
+            win_music.play();
           }
           //勝ち負け表示
           $("#judgment").html(judgment);
@@ -220,31 +229,35 @@
           let judgment = "";
           if (comHand === 1) {
             judgment = win;
+            win_music.play();
           } else if (comHand === 2) {
             judgment = draw;
           } else if (comHand === 3) {
             judgment = lose;
+            lose_music.play();
           }
           //勝ち負け表示
-          $("#judgment").html(judgment).slideDown(1000);
+          $("#judgment").html(judgment);
         });
         //パーボタンを押すと勝ち負けが決まる
         $("#par_btn").on("click", function () {
           let judgment = "";
           if (comHand === 1) {
             judgment = lose;
+            lose_music.play();
           } else if (comHand === 2) {
             judgment = win;
+            win_music.play();
           } else if (comHand === 3) {
             judgment = draw;
           }
           //勝ち負け表示
-          $("#judgment").html(judgment).slideDown(1000);
+          $("#judgment").html(judgment);
         });
       });
 
       
-
+//勝ち負けカウント
       function updatewinCount() {
         let winCount = $("#win").text();
         winCount = parseInt(winCount) + 1;
